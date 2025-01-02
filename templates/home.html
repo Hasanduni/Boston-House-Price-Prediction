@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boston House Price Prediction</title>
+    <style>
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #000000;
+            font-size: 36px; /* Increased font size */
+            font-weight: bold; /* Makes the title bolder */
+            }
+            
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c2e2c;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #91c6e5;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            width: 60%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 15px;
+        }
+
+        td {
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px; /* Increased padding for larger height */
+            font-size: 16px; /* Increased font size */
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            background-color: #06207e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2525a8;
+        }
+
+        label {
+          font-size: 20px; /* Increased font size for labels */
+          color: #000000; /* Darker text color */
+}
+
+        .description {
+          font-size: 14px; /* Larger font size for descriptions */
+          color: #333333; /* Darker text color */
+          margin-top: 4px; /* Adds spacing below the label */
+}
+.prediction-result {
+    margin-top: 20px;
+    font-size: 24px; /* Larger font size for the result */
+    color: #000000; /* Matches the button color */
+    font-weight: bold; /* Makes it stand out */
+    text-align: center; /* Centers the result text */
+    border: 2px solid #000000; /* Adds a border around the box */
+    padding: 20px; /* Adds space inside the box */
+    border-radius: 10px; /* Rounds the corners of the box */
+    background-color: #91c6e5; /* Light background color for the box */
+    width: fit-content; /* Adjusts the width to fit the content */
+    margin: 20px auto; /* Centers the box horizontally */
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Boston House Price Prediction</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <label for="CRIM">CRIM</label>
+                        <div class="description">Per capita crime rate by town</div>
+                    </td>
+                    <td><input type="text" name="CRIM" placeholder="CRIM" required></td>
+                    <td>
+                        <label for="ZN">ZN</label>
+                        <div class="description">Proportion of residential land zoned for lots over 25,000 sq.ft.</div>
+                    </td>
+                    <td><input type="text" name="ZN" placeholder="ZN" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="INDUS">INDUS</label>
+                        <div class="description">Proportion of non-retail business acres per town</div>
+                    </td>
+                    <td><input type="text" name="INDUS" placeholder="INDUS" required></td>
+                    <td>
+                        <label for="CHAS">CHAS</label>
+                        <div class="description">Charles River dummy variable (1 if bounds river, 0 otherwise)</div>
+                    </td>
+                    <td><input type="text" name="CHAS" placeholder="CHAS" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="NOX">NOX</label>
+                        <div class="description">Nitric oxides concentration (parts per 10 million)</div>
+                    </td>
+                    <td><input type="text" name="NOX" placeholder="NOX" required></td>
+                    <td>
+                        <label for="RM">RM</label>
+                        <div class="description">Average number of rooms per dwelling</div>
+                    </td>
+                    <td><input type="text" name="RM" placeholder="RM" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="AGE">AGE</label>
+                        <div class="description">Proportion of owner-occupied units built prior to 1940</div>
+                    </td>
+                    <td><input type="text" name="AGE" placeholder="AGE" required></td>
+                    <td>
+                        <label for="DIS">DIS</label>
+                        <div class="description">Weighted distances to five Boston employment centres</div>
+                    </td>
+                    <td><input type="text" name="DIS" placeholder="DIS" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="RAD">RAD</label>
+                        <div class="description">Index of accessibility to radial highways</div>
+                    </td>
+                    <td><input type="text" name="RAD" placeholder="RAD" required></td>
+                    <td>
+                        <label for="TAX">TAX</label>
+                        <div class="description">Full-value property-tax rate per $10,000</div>
+                    </td>
+                    <td><input type="text" name="TAX" placeholder="TAX" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="PTRATIO">PTRATIO</label>
+                        <div class="description">Pupil-teacher ratio by town</div>
+                    </td>
+                    <td><input type="text" name="PTRATIO" placeholder="PTRATIO" required></td>
+                    <td>
+                        <label for="B">B</label>
+                        <div class="description">1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town</div>
+                    </td>
+                    <td><input type="text" name="B" placeholder="B" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="LSTAT">LSTAT</label>
+                        <div class="description">% lower status of the population</div>
+                    </td>
+                    <td><input type="text" name="LSTAT" placeholder="LSTAT" required></td>
+                </tr>
+            </table>
+            <br>
+            <button type="submit" class="btn">Predict</button>
+        </form>
+        <br>
+        <br>
+        <div class="prediction-result">
+            {{ prediction_text }}
+        </div>
+    </div>
+</body>
+
+</html>
