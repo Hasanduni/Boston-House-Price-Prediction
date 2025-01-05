@@ -45,33 +45,8 @@ with st.expander("About the Dataset"):
     The **Boston House Prices Dataset** is a classic dataset in machine learning often used for regression problems. 
     It includes data collected by the U.S. Census Service concerning housing in the Boston area.
     """)
-    st.write("""
-    **Dataset Characteristics:**
-    - **Number of Instances:** 506
-    - **Number of Attributes:** 13 predictive attributes + 1 target (Median Value of homes)
-    - **Missing Values:** None
-    """)
-    st.write("""
-    **Attributes:**
-    1. **CRIM:** Per capita crime rate by town  
-    2. **ZN:** Proportion of residential land zoned for lots over 25,000 sq.ft.  
-    3. **INDUS:** Proportion of non-retail business acres per town  
-    4. **CHAS:** Charles River dummy variable (1 if bounds river, 0 otherwise)  
-    5. **NOX:** Nitric oxides concentration (parts per 10 million)  
-    6. **RM:** Average number of rooms per dwelling  
-    7. **AGE:** Proportion of owner-occupied units built prior to 1940  
-    8. **DIS:** Weighted distances to five Boston employment centres  
-    9. **RAD:** Index of accessibility to radial highways  
-    10. **TAX:** Full-value property-tax rate per $10,000  
-    11. **PTRATIO:** Pupil-teacher ratio by town  
-    12. **B:** 1000(Bk - 0.63)^2, where Bk is the proportion of black people by town  
-    13. **LSTAT:** Percentage of lower-status population  
-    14. **MEDV:** Median value of owner-occupied homes in $1000's (Target Variable)  
-    """)
-    st.caption("""
-    **Source:** Harrison, D. and Rubinfeld, D.L., "Hedonic prices and the demand for clean air", J. Environ. Economics & Management, 1978.  
-    [Link to Dataset](https://archive.ics.uci.edu/ml/machine-learning-databases/housing/)
-    """)
+    
+    
 
 # Feature Descriptions
 with st.expander("Feature Descriptions"):
